@@ -1,0 +1,158 @@
+<odoo>
+  <data>
+    <!-- TREE VIEW -->
+    <record model="ir.ui.view" id="resume_app.user_model_list">
+      <field name="name">User List</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+<!-- DECORATION USED HERE -->
+        <tree decoration-danger="age &lt; 18">
+          <field name="username"/>
+          <field name="email"/>
+          <field name="age"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- FORM VIEW -->
+
+    <record model="ir.ui.view" id="resume_app.user_model_form">
+      <field name="name">User Form</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+        <form>
+<!--  STATE USED HERE -->
+          <header>
+            <button name="confirm" type="object" string="Confirm" class="oe_highlight" state="u"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+<!-- NOTEBOOK USED HERE -->
+          <sheet>
+            <notebook>
+              <page string="User information: ">
+                <group>
+                  <field name="id"/>
+                  <field name="username" attrs = "{'readonly':[('state','=','c')]}"/>
+                  <field name="password" attrs = "{'readonly':[('state','=','c')]}"/>
+                </group>
+              </page>
+              <page string="Aditional information: ">
+                <group>
+                  <group>
+                    <field name="photo" widget="image"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                  </group>
+                  <group>
+                    <field name="email" widget="email"/>
+                    <field name="phone" widget="phone"/>
+                    <field name="date"/>
+                  </group>
+                </group>
+              </page>
+              <page string="User Relations: ">
+                <group> 
+<!-- DESPUES DE AÑADIR RELACIONES PETA AL ACTUALIZAR LA APLICACION -->
+                  <field name="manyToOne_id"/>
+                  <field name="oneToMany_ids">
+<!-- CUSTOM TREE USED HERE -->
+                    <tree>
+                      <field name="text"/>
+                    </tree>
+                  </field>
+                  <field name="manyToMany_ids">
+<!-- CUSTOM FORM USED HERE -->
+                    <form>
+                      <field name="text"/> --- CUSTOM FORM PUTTOOOOOO
+                    </form>
+                  </field>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    
+    <!-- KANBAN VIEW -->
+    <record model="ir.ui.view" id="resume_app.user_model_kanban">
+      <field name="name">User Kanban</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+        <kanban> 
+          <field name="username"/>
+          <field name="photo"/>
+          <field name="email"/>
+          <field name="phone"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                  <field name="photo" nolabel="1" widget="image" class="oe_right oe_avatar"/>
+                </div>
+                <div class="oe_kanban_details">
+                  <strong>
+                    <field name="username" class="oe_inline"/>
+                  </strong>
+                  <div t-if="record.phone.value">
+                    <t t-esc="record.phone.value"/>
+                  </div>
+                  <div t-if="record.email.value">
+                    <t t-esc="record.email.value"/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- GRAPH VIEW -->
+    <record model="ir.ui.view" id="resume_app.user_model_graph">
+      <field name="name">User Graph</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+        <graph type="bar"> 
+          <field name="username" type="row"/>
+          <field name="age" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
+    <!-- PIVOT VIEW -->
+    <record model="ir.ui.view" id="resume_app.user_model_pivot">
+      <field name="name">User Pivot</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+        <pivot>
+          <field name="username" type="row"/>
+          <field name="age"/>
+          <field name="gender"/>
+          <field name="email"/>
+          <field name="phone"/>
+        </pivot>
+      </field>
+    </record>
+
+    <!-- CALENDAR VIEW -->
+    <record model="ir.ui.view" id="resume_app.user_model_calendar">
+      <field name="name">User Calendar</field>
+      <field name="model">resume_app.user_model</field>
+      <field name="arch" type="xml">
+        <calendar date_start="date" color="name" mode="month" event_open_popup="true" form_view_id="resume_app.user_model" quick_add="false">
+          <field name="name"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- OPENING ACTIONS -->
+
+    <record model="ir.actions.act_window" id="resume_app.action_window_user">
+      <field name="name">User Window</field>
+      <field name="res_model">resume_app.user_model</field>
+      <field name="view_mode">tree,form,kanban,graph,pivot,calendar</field>
+    </record>
+
+  </data>
+</odoo>

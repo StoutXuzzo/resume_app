@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_resume_app_user_model_user,resume_app.model,model_resume_app_user_model,base.group_user,1,1,1,1
+access_resume_app_manytomany_model_user,resume_app.model,model_resume_app_manytomany_model,base.group_user,1,1,1,1
+access_resume_app_user_manytoone_user,resume_app.model,model_resume_app_manytoone_model,base.group_user,1,1,1,1
+access_resume_app_user_onetomany_user,resume_app.model,model_resume_app_onetomany_model,base.group_user,1,1,1,1

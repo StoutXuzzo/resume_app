@@ -1,0 +1,19 @@
+<odoo>
+  <data>
+    <!-- TOP MENU NAME AND ID -->
+    <menuitem name="Resume app" id="resume_app.menu_root"/>
+
+    <!-- MENU GROUPS DEFINITION-->
+    <menuitem name="User tables" id="resume_app.menu_user" parent="resume_app.menu_root"/>
+
+    <!-- MENU WINDOW BUTTONS -->
+    <menuitem name="User" id="resume_app.user_model_list" parent="resume_app.menu_user"
+     action="resume_app.action_window_user"/> 
+     <menuitem name="manytomany" id="resume_app.manytomany_model_list" parent="resume_app.menu_user"
+     action="resume_app.action_window_manytomany"/> 
+     <menuitem name="manytoone" id="resume_app.manytoone_model_list" parent="resume_app.menu_user"
+     action="resume_app.action_window_manytoone"/> 
+     <menuitem name="onetomany" id="resume_app.onetomany_model_list" parent="resume_app.menu_user"
+     action="resume_app.action_window_onetomany"/> 
+  </data>
+</odoo>

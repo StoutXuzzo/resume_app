@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <!-- TREE VIEW -->
+    <record model="ir.ui.view" id="resume_app.onetomany_model_list">
+      <field name="name">onetomany List</field>
+      <field name="model">resume_app.onetomany_model</field>
+      <field name="arch" type="xml">
+<!-- DECORATION USED HERE -->
+        <tree>
+          <field name="text"/>
+          <field name="user_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- FORM VIEW -->
+
+    <record model="ir.ui.view" id="resume_app.onetomany_model_form">
+      <field name="name">onetomany Form</field>
+      <field name="model">resume_app.onetomany_model</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="text"/>
+            <field name="user_id"/>
+        </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- OPENING ACTIONS -->
+
+    <record model="ir.actions.act_window" id="resume_app.action_window_onetomany">
+      <field name="name">onetomany Window</field>
+      <field name="res_model">resume_app.onetomany_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>
